@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FL Sounds | 2026</title>
-    
-    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♪</text></svg>">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-
     <style>
         :root {
             --primary: #007AFF;
@@ -24,14 +20,21 @@
             --text-secondary: #a0a0a0;
             --cubic: cubic-bezier(0.23, 1, 0.32, 1);
         }
-
+        .light-theme {
+            --primary: #007AFF;
+            --accent: #FF2D55;
+            --bg: #ffffff;
+            --card-bg: rgba(0, 0, 0, 0.02);
+            --card-border: rgba(0, 0, 0, 0.08);
+            --text: #000000;
+            --text-secondary: #666666;
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             -webkit-font-smoothing: antialiased;
         }
-
         body {
             background-color: var(--bg);
             color: var(--text);
@@ -39,9 +42,8 @@
             overflow-x: hidden;
             line-height: 1.5;
             user-select: none;
+            transition: background-color 0.5s var(--cubic), color 0.5s var(--cubic);
         }
-
-        /* Анимированный фон */
         .blob {
             position: fixed;
             width: 600px;
@@ -52,14 +54,15 @@
             filter: blur(80px);
             animation: moveBlob 20s infinite alternate var(--cubic);
             pointer-events: none;
+            transition: background 0.5s var(--cubic);
         }
-
+        .light-theme .blob {
+            background: radial-gradient(circle, rgba(0,122,255,0.04) 0%, rgba(0,0,0,0) 70%);
+        }
         @keyframes moveBlob {
             0% { transform: translate(-10%, -10%) scale(1); }
             100% { transform: translate(20%, 10%) scale(1.2); }
         }
-
-        /* Навигация */
         nav {
             display: flex;
             justify-content: space-between;
@@ -70,8 +73,11 @@
             background: rgba(5, 5, 5, 0.6);
             backdrop-filter: blur(20px);
             z-index: 1000;
+            transition: background 0.5s var(--cubic);
         }
-
+        .light-theme nav {
+            background: rgba(255, 255, 255, 0.6);
+        }
         .logo {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.4rem;
@@ -82,16 +88,18 @@
             -webkit-text-fill-color: transparent;
             transition: transform 0.3s var(--cubic);
         }
-
+        .light-theme .logo {
+            background: linear-gradient(to right, #000, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
         .logo:hover {
             transform: scale(1.05);
         }
-
         .nav-links {
             display: flex;
             gap: 35px;
         }
-
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -102,7 +110,6 @@
             position: relative;
             padding: 5px 0;
         }
-
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -114,17 +121,45 @@
             transition: 0.3s var(--cubic);
             transform: translateX(-50%);
         }
-
         .nav-links a:hover::after, .nav-links a.active::after {
             width: 100%;
         }
-
         .nav-links a:hover, .nav-links a.active {
             color: var(--text);
-            text-shadow: 0 0 15px rgba(255,255,255,0.1);
+            text-shadow: 0 0 15px rgba(255,255,255,0.3);
         }
-
-        /* Контейнер */
+        .light-theme .nav-links a:hover, .light-theme .nav-links a.active {
+            text-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s var(--cubic);
+            color: var(--text);
+            padding: 0;
+        }
+        .theme-toggle:hover {
+            background: rgba(128, 128, 128, 0.15);
+            transform: scale(1.1);
+        }
+        .light-theme .theme-toggle:hover {
+            background: rgba(128, 128, 128, 0.1);
+        }
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+        .theme-icon {
+            width: 20px;
+            height: 20px;
+            display: block;
+        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -133,7 +168,6 @@
             display: flex;
             flex-direction: column;
         }
-
         .page {
             display: none;
             padding: 100px 0;
@@ -141,21 +175,16 @@
             transform: translateY(20px);
             flex-grow: 1;
         }
-
         .page.active {
             display: block;
             animation: pageIn 0.8s var(--cubic) forwards;
         }
-
         @keyframes pageIn {
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Герой */
         .hero {
             text-align: center;
         }
-
         .hero h1 {
             font-family: 'Montserrat', sans-serif;
             font-size: clamp(2.5rem, 7vw, 5rem);
@@ -163,7 +192,6 @@
             line-height: 1.1;
             margin-bottom: 25px;
         }
-
         .hero p {
             color: var(--text-secondary);
             font-size: 1.2rem;
@@ -172,16 +200,13 @@
             opacity: 0;
             animation: textReveal 1s 0.4s var(--cubic) forwards;
         }
-
         @keyframes textReveal {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Кнопки */
         .btn {
             background: var(--text);
-            color: #000;
+            color: var(--bg);
             padding: 16px 38px;
             border-radius: 100px;
             text-decoration: none;
@@ -191,12 +216,10 @@
             cursor: pointer;
             transition: 0.3s var(--cubic);
             display: inline-block;
-            box-shadow: 0 0 0 rgba(255,255,255,0);
             position: relative;
             overflow: hidden;
             z-index: 1;
         }
-
         .btn::before {
             content: '';
             position: absolute;
@@ -204,44 +227,39 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+            background: rgba(255, 255, 255, 0.15);
             opacity: 0;
             transition: opacity 0.3s var(--cubic);
             z-index: -1;
         }
-
+        .light-theme .btn::before {
+            background: rgba(0, 0, 0, 0.1);
+        }
         .btn:hover::before {
             opacity: 1;
         }
-
         .btn:hover {
             transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(255,255,255,0.1);
         }
-
         .btn:active {
             transform: translateY(-2px);
         }
-
-        /* Анимация для маленьких кнопок */
         .btn-small {
             background: var(--primary);
             color: white;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 100px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             border: none;
             cursor: pointer;
             transition: 0.3s var(--cubic);
             display: inline-block;
-            box-shadow: 0 0 0 rgba(0,122,255,0);
             position: relative;
             overflow: hidden;
             z-index: 1;
         }
-
         .btn-small::before {
             content: '';
             position: absolute;
@@ -249,33 +267,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(0,122,255,0.3), rgba(0,122,255,0.1));
+            background: rgba(0, 122, 255, 0.2);
             opacity: 0;
             transition: opacity 0.3s var(--cubic);
             z-index: -1;
         }
-
         .btn-small:hover::before {
             opacity: 1;
         }
-
         .btn-small:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,122,255,0.1);
+            transform: translateY(-2px) scale(1.05);
         }
-
         .btn-small:active {
             transform: translateY(-1px);
         }
-
-        /* Сетка и Карточки */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
             margin-top: 60px;
         }
-
         .card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -287,40 +298,22 @@
             display: flex;
             flex-direction: column;
         }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(0,122,255,0.05) 0%, transparent 100%);
-            opacity: 0;
-            transition: 0.4s var(--cubic);
-        }
-
         .card:hover {
             transform: translateY(-10px);
             border-color: rgba(0,122,255,0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
         .card h3 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.5rem;
             margin: 15px 0;
             letter-spacing: -0.5px;
         }
-
         .card p {
             color: var(--text-secondary);
             font-size: 0.95rem;
             margin-bottom: 25px;
             flex-grow: 1;
         }
-
         .tag {
             font-size: 0.7rem;
             text-transform: uppercase;
@@ -329,20 +322,15 @@
             font-weight: 700;
             display: block;
         }
-
-        /* Специфичные заголовки секций */
         .section-header {
             text-align: left;
             margin-bottom: 20px;
         }
-
         .section-header h2 {
             font-family: 'Montserrat', sans-serif;
             font-size: 3rem;
             letter-spacing: -1.5px;
         }
-
-        /* Футер */
         footer {
             text-align: center;
             padding: 50px 0;
@@ -351,19 +339,14 @@
             letter-spacing: 1px;
             margin-top: auto;
         }
-
-        /* Анимация появления карточек */
         .card { opacity: 0; animation: cardFadeIn 0.6s var(--cubic) forwards; }
         .card:nth-child(1) { animation-delay: 0.1s; }
         .card:nth-child(2) { animation-delay: 0.2s; }
         .card:nth-child(3) { animation-delay: 0.3s; }
-
         @keyframes cardFadeIn {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Стили для обучения */
         .edu-content {
             max-width: 800px;
             margin: 0 auto;
@@ -374,40 +357,33 @@
             margin-top: 40px;
             display: none;
         }
-
         .edu-content.active {
             display: block;
             animation: pageIn 0.8s var(--cubic) forwards;
         }
-
         .edu-content h1 {
             font-family: 'Montserrat', sans-serif;
             font-size: 2.5rem;
             margin-bottom: 20px;
             color: var(--primary);
         }
-
         .edu-content h2 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.8rem;
             margin: 30px 0 15px 0;
             color: var(--accent);
         }
-
         .edu-content p {
             margin-bottom: 15px;
             line-height: 1.7;
         }
-
         .edu-content ul {
             margin: 15px 0 15px 20px;
         }
-
         .edu-content li {
             margin-bottom: 10px;
             line-height: 1.6;
         }
-
         .edu-back-btn {
             background: var(--primary);
             color: white;
@@ -425,7 +401,6 @@
             overflow: hidden;
             z-index: 1;
         }
-
         .edu-back-btn::before {
             content: '';
             position: absolute;
@@ -433,22 +408,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(0,122,255,0.3), rgba(0,122,255,0.1));
+            background: rgba(0, 122, 255, 0.2);
             opacity: 0;
             transition: opacity 0.3s var(--cubic);
             z-index: -1;
         }
-
         .edu-back-btn:hover::before {
             opacity: 1;
         }
-
         .edu-back-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,122,255,0.1);
         }
-
-        /* Стили для папок библиотеки */
         .folder-content {
             max-width: 800px;
             margin: 0 auto;
@@ -459,29 +429,59 @@
             margin-top: 40px;
             display: none;
         }
-
         .folder-content.active {
             display: block;
             animation: pageIn 0.8s var(--cubic) forwards;
         }
-
         .folder-content h1 {
             font-family: 'Montserrat', sans-serif;
             font-size: 2.5rem;
             margin-bottom: 20px;
             color: var(--primary);
         }
-        
-        /* Стили для кнопки возвращения в библиотеку */
         .folder-content .btn {
             margin-top: 40px;
+        }
+        .pack-info {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+        .pack-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        .pack-info .detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .pack-info .detail:last-child {
+            border-bottom: none;
+        }
+        .pack-info .label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .pack-info .value {
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .pack-info .download-btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-
     <div class="blob"></div>
-
     <nav>
         <div class="logo">FL SOUNDS</div>
         <div class="nav-links">
@@ -489,10 +489,24 @@
             <a onclick="showPage('edu')" id="link-edu">Обучение</a>
             <a onclick="showPage('lib')" id="link-lib">Библиотека</a>
         </div>
+        <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle">
+            <svg class="theme-icon sun" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                <line x1="12" y1="2" x2="12" y2="5" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="12" y1="19" x2="12" y2="22" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="2" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="19" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="5" y1="5" x2="7.5" y2="7.5" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="16.5" y1="16.5" x2="19" y2="19" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="5" y1="19" x2="7.5" y2="16.5" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="16.5" y1="7.5" x2="19" y2="5" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <svg class="theme-icon moon" viewBox="0 0 24 24" aria-hidden="true" style="display:none;">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+            </svg>
+        </button>
     </nav>
-
     <div class="container">
-        <!-- ГЛАВНАЯ -->
         <section id="home" class="page active">
             <div class="hero">
                 <h1>Твой звук <br> начинается здесь.</h1>
@@ -500,15 +514,12 @@
                 <button onclick="showPage('lib')" class="btn">Исследовать библиотеку</button>
             </div>
         </section>
-
-        <!-- ОБУЧЕНИЕ -->
         <section id="edu" class="page">
             <div class="section-header">
                 <span class="tag">Knowledge</span>
                 <h2>Мастерство</h2>
                 <p style="color: var(--text-secondary)">Прокачай свои навыки до максимального уровня</p>
             </div>
-            
             <div class="grid">
                 <div class="card" onclick="showLesson('fl-start')">
                     <span class="tag">Курс</span>
@@ -523,101 +534,59 @@
                     <button class="btn btn-small">Запустить</button>
                 </div>
             </div>
-            
             <div id="fl-start" class="edu-content">
                 <a href="#" class="edu-back-btn" onclick="showPage('edu'); return false;">← Назад к курсам</a>
-                
                 <h1>Начало FL</h1>
                 <p>Пошаговая инструкция для начинающих</p>
-                
                 <p>Привет! Если ты читаешь это, значит, ты хочешь делать музыку, но FL Studio выглядит как панель управления космическим кораблём. Не стрессуй! Сейчас мы всё разберём на человеческом языке.</p>
-
                 <h2>САМОЕ ВАЖНОЕ: Твой первый трек за 15 минут</h2>
                 <p><strong>ГЛАВНОЕ ПРАВИЛО:</strong> FL Studio — это не программа, а цифровая игровая приставка для создания музыки. Расслабься!</p>
-
                 <p><strong>1. Открываешь FL Studio, видишь кучу кнопок, паника. Игнорируй 95% кнопок. Сосредоточься на трех вещах:</strong> Плейлист (большая серая область внизу) — тут строится вся песня; Паттерн-секвенсор (эти цветные кнопки справа) — тут создаёшь мелкие кусочки; Микшер (вкладка вверху или клавиша F9) — тут всё звучит громко и круто.</p>
-
                 <p><strong>2. Твой первый бит за 5 минут.</strong> Нажми F6 — откроется окно с кучей звуков. Найди "Kick" (бочку), перетащи его на сетку паттерна. Расставь удары на 1, 5, 9, 13 долях (просто кликай). То же самое с "Clap" (хлопок) на 5 и 13 долях. Найди "Hi-hat" (тарелочка), расставь чаще. Вуаля! У тебя уже есть ритм. Нажми Play вверху.</p>
-
                 <p><strong>3. Добавляем бас еще за 3 минуты.</strong> Нажми F8 и выбери любой синтезатор (лучше начать с "3xOsc"). В появившемся окне нажми на клавиатуру мышкой, чтобы проверить звук. Вернись в паттерн, нарисуй ноты на тех же долях, что и kick. Вау! Это уже похоже на музыку!</p>
-
                 <p><strong>4. Собираем трек за оставшиеся 5 минут.</strong> В плейлисте (внизу) кликни правой кнопкой, выбери "Rename" и назови паттерн "Бит". Нарисуй этот паттерн на 4-8 тактах. Создай новый паттерн, назови его "Бас" и нарисуй его под первым. Поздравляю! У тебя уже есть лууп!</p>
-
                 <h2>РАЗБИРАЕМ ИНТЕРФЕЙС: Что тут вообще происходит?</h2>
                 <p>FL Studio разделён на 5 главных зон.</p>
-
                 <p><strong>1. Верхняя панель (кабина пилота).</strong> Play/Stop — очевидно. BPM (Tempo) — скорость трека. Запомни: хип-хоп — это 80-100 BPM, EDM — 120-140. Режимы Паттерн/Песня — сначала работаешь в паттернах, потом собираешь их в песню.</p>
-
                 <p><strong>2. Браузер (твой холодильник со звуками).</strong> Слева папки со ВСЕМИ звуками. Просто тащи оттуда что угодно куда угодно. Профессиональный совет: в папке "Packs" есть готовые сэмплы, с них и начинай.</p>
-
                 <p><strong>3. Паттерн-секвенсор (детский конструктор).</strong> Каждый цветной квадрат — отдельный звук. Кликаешь — звук играет в этот момент. Создаёшь много разных паттернов: бит, мелодия, эффекты.</p>
-
                 <p><strong>4. Плейлист (сборка конструктора).</strong> Сюда таскаешь готовые паттерны. Строишь структуру: интро, потом куплет, потом припев, снова куплет, припев и аутро. Просто рисуешь прямоугольники — это и есть твоя песня!</p>
-
                 <p><strong>5. Микшер (волшебная кухня).</strong> Каждый твой звук идёт на отдельный канал. На каналы добавляешь эффекты, как приправы. Запомни три главных: Fruity Reverb — эхо, Fruity Delay — повторение, Fruity Compressor — делает звук плотнее и громче. Пока не трогай ничего, кроме громкости (вертикальные ползунки).</p>
-
                 <h2>ГЛАВА 3: Делаем СУПЕР БИТ</h2>
                 <p>Секрет крутого бита — слои и немного хаоса.</p>
-
                 <p><strong>1. Kick (бочка):</strong> должно быть ЧУВСТВУЕТСЯ, а не только слышно. Возьми 2 разных кика. Один для низа (бум), второй для щелчка (click). Настрой громкость: кик должен быть чуть громче всего остального.</p>
-
                 <p><strong>2. Snare/Clap (хлопок).</strong> Добавь к clap небольшой эффект "Fruity Reverb" прямо в микшере. Сделай его тише, чем кик. Секрет: сдвинь хлопок СЛЕГКА влево или вправо по сетке — он будет звучать живее, менее роботизированно.</p>
-
                 <p><strong>3. Hi-hats (тарелки).</strong> Создай 2 дорожки: открытый хэт и закрытый хэт. Закрытый — стучит часто и ровно, открытый — добавляй иногда для акцента. Секрет: сделай хэты чуть тише, чем кажется нужным на первый взгляд.</p>
-
                 <p><strong>4. Перкуссия (погремушки, щелчки).</strong> Найди в браузере папку "Percussion". Добавь 1-2 звука, расставь их СЛУЧАЙНО, через раз. Это маленькое оживит весь бит!</p>
-
                 <h2>ГЛАВА 4: Мелодии, которые не стыдно показать</h2>
                 <p>Страх белого листа побеждаем так.</p>
-
                 <p><strong>1. Выбираем инструмент.</strong> Для начала бери 3xOsc (он очень простой) или FLEX (в нем куча готовых крутых пресетов). Для более сложных и уникальных звуков есть Sytrus или Harmor, но это уже продвинутый уровень.</p>
-
                 <p><strong>2. Аккорды — твой лучший друг.</strong> Не пытайся сразу писать гениальное соло. Возьми 3-4 ноты, которые звучат вместе (можно быстро погуглить "простые аккорды для пианино"). Зажмите клавишу Ctrl и рисуй эти ноты в пианино-ролле (он открывается двойным кликом на паттерне).</p>
-
                 <p><strong>3. Бас-линия.</strong> Она должна совпадать с нотами кика чаще всего. Делай бас ПРОСТЫМ, особенно в начале. Пусть он играет на тех же нотах, что и твои аккорды, только на октаву или две ниже.</p>
-
                 <p><strong>4. Ведущая мелодия.</strong> Вводи её в трек через 30 секунд после начала. Пусть она повторяет короткий мотив из 3-5 нот. Сразу добавь на неё эффект "Fruity Delay" — и она станет атмосфернее.</p>
-
                 <h2>ГЛАВА 5: Эффекты — магия из ничего</h2>
-                <p>Без эффектов музыка звучит как сырые макароны.</p>
-
+                <p>Без эффектов музыка звущит как сырые макароны.</p>
                 <p><strong>1. Reverb (эхо).</strong> Добавляет "пространство". Много ревера — звук как в пещере, мало — как в маленькой комнате. Добавляй на хлопки, вокал, иногда на ведущую мелодию.</p>
-
                 <p><strong>2. Delay (повторение).</strong> Ноты повторяются, как эхо в горах. Идеально для вокала и синтов. Главная настройка — Time, подбери её под ритм своего трека.</p>
-
                 <p><strong>3. Compressor (компрессор).</strong> Делает тихие звуки громче, а громкие — тише. Включай его на барабанах и басе. Но не переборщи, иначе звук начнёт "задыхаться".</p>
-
                 <p><strong>4. EQ (эквалайзер).</strong> Fruity Parametric EQ 2 — твой лучший друг. Он режет лишние частоты. Золотое правило: убирай низкие частоты (бас) у всего, кроме кика и бас-линии. Это очистит звук.</p>
-
                 <h2>ГЛАВА 6: Строим целую песню</h2>
                 <p>Структура — вот что отличает "набросок" от "настоящего трека".</p>
-
                 <p><strong>1. Интро (первые 0:00-0:30).</strong> Только атмосфера или один инструмент. Медленно, по одному, добавляй остальные элементы. Сделай его длиной в 4-8 тактов.</p>
-
                 <p><strong>2. Куплет (0:30-1:30).</strong> Здесь раскрывается основная идея, но без самого мощного удара. Уже есть почти все элементы, но они играют тише или не все вместе. Обязательно добавь что-то новое на второй куплет!</p>
-
                 <p><strong>3. Припев (1:30-2:00).</strong> Здесь ВСЁ играет на полную. Добавь ударные элементы (крики, сирены — ищи в браузере папку "Effects"). Пусть бас и кик здесь будут максимально мощными.</p>
-
                 <p><strong>4. Сбивка или Брейкдаун (2:00-2:30).</strong> Внезапно убери почти все элементы. Оставь только атмосферу и один-два звука. Затем медленно, как пазл, собери звучание заново. Это создает драму.</p>
-
                 <p><strong>5. Аутро (3:00-3:30).</strong> Постепенно убирай элементы, один за другим. В конце оставь только то, с чего начинал интро. Сделай fade out — плавное уменьшение громкости до нуля.</p>
-
                 <h2>ГЛАВНЫЕ СОВЕТЫЫ!!!</h2>
                 <p><strong>1. Автоматизация — секрет динамики.</strong> Нажми правой кнопкой на любую кнопку (например, громкость или ручку фильтра) и выбери "Create automation clip". Теперь эта кнопка может меняться со временем по твоему рисунку! Автоматизируй громкость, фильтры, даже темп.</p>
-
                 <p><strong>2. Layering (слоение).</strong> Один звук — это скучно. Два похожих звука, играющих вместе, — уже интересно. Слои кик, слои бас, хлопок плюс еще один хлопок. Главное — потом настроить громкость каждого слоя, чтобы они слились в один идеальный звук.</p>
-
                 <p><strong>3. Панорамирование.</strong> В микшере есть крутилка "PAN". Размести разные звуки слева и справа. Барабаны (кик, клэп) обычно оставляют по центру, а различные эффекты, перкуссию и подзвучки можно развести по краям. Это создает широкое, объемное звучание.</p>
-
                 <p><strong>4. Создай свою библиотеку.</strong> Когда найдешь в сети или сделаешь сам крутой звук или пресет — сохрани его. Зайди в Browser, затем Places, найди папку FL Studio, потом Data, Patches и User. Сохраняй всё туда. Постепенно соберешь свою уникальную коллекцию, с которой будет быстрее и удобнее работать.</p>
-
                 <h2>ФИНАЛ: Сохранение и экспорт</h2>
                 <p>Не сделаешь это — никто никогда не услышит твой трек.</p>
-
                 <p><strong>1.</strong> Всегда сохраняй проект: File -> Save. Так ты всегда сможешь вернуться и что-то доделать.</p>
                 <p><strong>2.</strong> Экспорт в mp3 (чтобы скинуть другу или выложить). File -> Export -> MP3. Quality ставь 320 kbps. Нажми "Start"!</p>
                 <p><strong>3.</strong> Покажи друзьям. Это самая важная часть, ради которой всё и затевалось.</p>
-
                 <h2>ЧТО ДАЛЬШЕ?</h2>
                 <ul>
                     <li>Смотри туториалы на YouTube, но помни правило: не смотри больше, чем делаешь сам!</li>
@@ -625,20 +594,14 @@
                     <li>Делай хотя бы 15 минут в день. Регулярность важнее, чем многочасовые штурмы раз в месяц.</li>
                     <li>Не гонись за идеалом. Первые 20-30 треков будут "так себе", и это абсолютно нормально. Это твой путь.</li>
                 </ul>
-
                 <p><strong>САМЫЙ ГЛАВНЫЙ СОВЕТ:</strong> Музыка — это весело! Если застрял на каком-то моменте, попробуй сделать наоборот. Добавь странный звук, сдвинь его не в такт, включи случайный эффект на максимум. Часто такие "ошибки" становятся самой интересной фишкой трека.</p>
-
                 <p>Удачи! Через месяц ты сам будешь смеяться, что этот интерфейс когда-то казался таким сложным. Если совсем туго — ищи ответы в интернете или спрашивай на форумах. Мы все когда-то начинали.</p>
-
                 <button class="btn" onclick="showPage('edu')">Вернуться к курсам</button>
             </div>
-            
             <div id="style-setup" class="edu-content">
                 <a href="#" class="edu-back-btn" onclick="showPage('edu'); return false;">← Назад к курсам</a>
-                
                 <h1>Настройки стилей</h1>
                 <p>План по настройке определённого стиля</p>
-                
                 <h2>1. Mylancore (Майланкор)</h2>
                 <p>Эстетика светлой грусти, аниме-ностальгии и быстрых ломаных битов.</p>
                 <p><strong>Настройки:</strong> 170–185 BPM / Тональность: Major (до мажор / фа мажор).</p>
@@ -657,7 +620,6 @@
                     <li>Синты: Vital (пресеты в духе Boards of Canada).</li>
                     <li>Эффекты: dblue Tapestop, Gross Beat (пресет 1/2 speed).</li>
                 </ul>
-
                 <h2>2. Hodtrap (Ходтрап)</h2>
                 <p>Агрессивный, «грязный» звук с акцентом на тяжелый низ и ритмику.</p>
                 <p><strong>Настройки:</strong> 140–145 BPM / Тональность: D# Minor / C Minor.</p>
@@ -676,7 +638,6 @@
                     <li>Ударные: Драм-киты от BNYX или 808 Mafia.</li>
                     <li>Эффекты: Soundtoys Decapitator (для грязи), Fruity Fast Dist.</li>
                 </ul>
-
                 <h2>3. Hardtrek (Hardtekk)</h2>
                 <p>Европейское «злое» техно с прыгающим ритмом.</p>
                 <p><strong>Настройки:</strong> 150–160 BPM / Тональность: Любая (часто атонально).</p>
@@ -694,7 +655,6 @@
                     <li>Синты: Vanguard 2, Sylenth1.</li>
                     <li>Эффекты: CamelCrusher (Distortion), FabFilter Saturn 2.</li>
                 </ul>
-
                 <h2>4. Hyperpop (2026 Style)</h2>
                 <p>Максимально яркий, перегруженный и футуристичный звук.</p>
                 <p><strong>Настройки:</strong> 165–180 BPM / Тональность: Любой Major.</p>
@@ -712,7 +672,6 @@
                     <li>Вокал: AlterBoy (Pitch shifting), Antares Auto-Tune.</li>
                     <li>Эффекты: Portal (Output), dblue Glitch 2.</li>
                 </ul>
-
                 <h2>5. Angelcore</h2>
                 <p>Эфирная, небесная музыка с упором на атмосферу и реверберацию.</p>
                 <p><strong>Настройки:</strong> 120–140 BPM / Тональность: E Major / B Major.</p>
@@ -730,19 +689,15 @@
                     <li>Атмосфера: Omnisphere.</li>
                     <li>Эффекты: Valhalla Supermassive (бесплатный и идеальный для этого), ShaperBox 3.</li>
                 </ul>
-
                 <button class="btn" onclick="showPage('edu')">Вернуться к курсам</button>
             </div>
         </section>
-
-        <!-- БИБЛИОТЕКА -->
         <section id="lib" class="page">
             <div class="section-header">
                 <span class="tag">Resources</span>
                 <h2>Библиотека</h2>
                 <p style="color: var(--text-secondary)">Инструменты для твоего следующего хита</p>
             </div>
-
             <div class="grid">
                 <div class="card" onclick="showFolder('plugins')">
                     <span class="tag">Plugin</span>
@@ -769,7 +724,6 @@
                     <button class="btn btn-small">Открыть</button>
                 </div>
             </div>
-            
             <div id="plugins" class="folder-content">
                 <a href="#" class="edu-back-btn" onclick="showPage('lib'); return false;">← Назад к библиотеке</a>
                 <h1>Плагины</h1>
@@ -777,15 +731,28 @@
                 <p>Здесь вы найдете все необходимые плагины для создания музыки в FL Studio. Каждый плагин имеет свои особенности и возможности для звукового дизайна.</p>
                 <button class="btn" onclick="showPage('lib')">Вернуться к библиотеке</button>
             </div>
-            
             <div id="sounds" class="folder-content">
                 <a href="#" class="edu-back-btn" onclick="showPage('lib'); return false;">← Назад к библиотеке</a>
                 <h1>All Sounds Packs</h1>
                 <p>Все звуковые паки</p>
-                <p>Коллекция звуковых паков для различных жанров и стилей. Каждый пак содержит уникальные сэмплы, драмы и синтезаторные пресеты.</p>
+                <div class="pack-info">
+                    <h3>MultiPack</h3>
+                    <div class="detail">
+                        <span class="label">Версия:</span>
+                        <span class="value">1.0</span>
+                    </div>
+                    <div class="detail">
+                        <span class="label">Объём:</span>
+                        <span class="value">7гб</span>
+                    </div>
+                    <div class="detail">
+                        <span class="label">Кол-во звуков и файлов:</span>
+                        <span class="value">7.860</span>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1uP9rajjCDHAxT2-iNZPFJvr9gog10Ivj?usp=drive_link" target="_blank" class="btn btn-small download-btn">Скачать</a>
+                </div>
                 <button class="btn" onclick="showPage('lib')">Вернуться к библиотеке</button>
             </div>
-            
             <div id="patterns" class="folder-content">
                 <a href="#" class="edu-back-btn" onclick="showPage('lib'); return false;">← Назад к библиотеке</a>
                 <h1>Patterns</h1>
@@ -793,7 +760,6 @@
                 <p>Предзаписанные паттерны для быстрого старта. Используйте их как основу для своих треков или как вдохновение для новых идей.</p>
                 <button class="btn" onclick="showPage('lib')">Вернуться к библиотеке</button>
             </div>
-            
             <div id="projects" class="folder-content">
                 <a href="#" class="edu-back-btn" onclick="showPage('lib'); return false;">← Назад к библиотеке</a>
                 <h1>Demo Projects</h1>
@@ -802,85 +768,79 @@
                 <button class="btn" onclick="showPage('lib')">Вернуться к библиотеке</button>
             </div>
         </section>
-
-        <footer>
-            © 2026 FL SOUNDS DIGITAL. ALL RIGHTS RESERVED.
-        </footer>
+        <footer></footer>
     </div>
-
     <script>
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
             const links = document.querySelectorAll('.nav-links a');
             const eduContent = document.querySelectorAll('.edu-content');
             const folderContent = document.querySelectorAll('.folder-content');
-            
             pages.forEach(page => {
                 page.classList.remove('active');
                 page.style.animation = 'none';
-                page.offsetHeight; 
+                page.offsetHeight;
                 page.style.animation = null;
             });
-            
             links.forEach(link => link.classList.remove('active'));
-
             eduContent.forEach(content => content.classList.remove('active'));
             folderContent.forEach(content => content.classList.remove('active'));
-
             document.getElementById(pageId).classList.add('active');
-            
             const activeLink = document.getElementById('link-' + (pageId === 'home' ? 'home' : pageId));
             if (activeLink) activeLink.classList.add('active');
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
         function showLesson(lessonId) {
             const eduPage = document.getElementById('edu');
             const lessonContent = document.getElementById(lessonId);
             const pages = document.querySelectorAll('.page');
             const links = document.querySelectorAll('.nav-links a');
             const eduContent = document.querySelectorAll('.edu-content');
-            
             pages.forEach(page => {
                 page.classList.remove('active');
                 page.style.animation = 'none';
-                page.offsetHeight; 
+                page.offsetHeight;
                 page.style.animation = null;
             });
-            
             links.forEach(link => link.classList.remove('active'));
             eduContent.forEach(content => content.classList.remove('active'));
             document.getElementById('link-edu').classList.add('active');
-
             eduPage.classList.add('active');
             lessonContent.classList.add('active');
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
         function showFolder(folderId) {
             const libPage = document.getElementById('lib');
             const folderContent = document.getElementById(folderId);
             const pages = document.querySelectorAll('.page');
             const links = document.querySelectorAll('.nav-links a');
             const folderContents = document.querySelectorAll('.folder-content');
-            
             pages.forEach(page => {
                 page.classList.remove('active');
                 page.style.animation = 'none';
-                page.offsetHeight; 
+                page.offsetHeight;
                 page.style.animation = null;
             });
-            
             links.forEach(link => link.classList.remove('active'));
             folderContents.forEach(content => content.classList.remove('active'));
             document.getElementById('link-lib').classList.add('active');
-
             libPage.classList.add('active');
             folderContent.classList.add('active');
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function toggleTheme() {
+            const body = document.body;
+            const sunIcon = document.querySelector('.theme-icon.sun');
+            const moonIcon = document.querySelector('.theme-icon.moon');
+            if (body.classList.contains('light-theme')) {
+                body.classList.remove('light-theme');
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            } else {
+                body.classList.add('light-theme');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            }
         }
     </script>
 </body>
