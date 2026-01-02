@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -478,6 +479,42 @@
             text-align: center;
             margin-top: 20px;
         }
+        .plugin-info {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+        .plugin-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        .plugin-info .detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .plugin-info .detail:last-child {
+            border-bottom: none;
+        }
+        .plugin-info .label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .plugin-info .value {
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .plugin-info .download-btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -729,6 +766,54 @@
                 <h1>Плагины</h1>
                 <p>Все плагины для FL Studio</p>
                 <p>Здесь вы найдете все необходимые плагины для создания музыки в FL Studio. Каждый плагин имеет свои особенности и возможности для звукового дизайна.</p>
+                <div class="plugin-info">
+                    <h3>AUTOTUNE</h3>
+                    <div class="detail">
+                        <span class="label">Версия:</span>
+                        <span class="value">1.0</span>
+                    </div>
+                    <div class="detail">
+                        <span class="label">Тип:</span>
+                        <span class="value">Vocal Processor</span>
+                    </div>
+                    <div class="detail">
+                        <span class="label">Описание:</span>
+                        <span class="value">Профессиональный плагин для коррекции высоты голоса. Используется для создания характерного вокального звучания в хип-хопе, поп-музыке и других жанрах. Обеспечивает точную и естественную коррекцию с возможностью настройки скорости и интенсивности.</span>
+                    </div>
+                    <a href="https://www.dropbox.com/scl/fo/6y6n4npk1rs9vkp9a5paa/AKGPTjJ8JB0jvHfMAlDnCas?rlkey=msakt3c3fb1z569x087xka3ie&st=rga52zkv&dl=0" target="_blank" class="btn btn-small download-btn">Скачать</a>
+                </div>
+                <div class="plugin-info">
+                    <h3>Serum</h3>
+                    <div class="detail">
+                        <span class="label">Версия:</span>
+                        <span class="value">1.337</span>
+                    </div>
+                    <div class="detail">
+                        <span class="label">Тип:</span>
+                        <span class="value">Wavetable Synthesizer</span>
+                    </div>
+                    <div class="detail">
+                        <span class="label">Описание:</span>
+                        <span class="value">Один из самых популярных wavetable-синтезаторов в мире электронной музыки. Обладает мощным звуком, интуитивным интерфейсом и возможностью загрузки собственных wavetable. Используется в жанрах от EDM до хип-хопа и лофай.</span>
+                    </div>
+                    <a href="https://www.dropbox.com/scl/fi/yxjigttt1vvcorlpi3r7r/Serum.rar?rlkey=0zs3pd5soxkx0u495z8jo8mm1&st=044wf3s3&dl=0" target="_blank" class="btn btn-small download-btn">Скачать</a>
+                </div>
+                <div class="plugin-info">
+                    <h3>Serum 2</h3>
+                    <div class="detail">
+                        <span class="label">Версия:</span>
+                        <span class="value">2.0</span>
+                    </div>
+                    <div class="detail">
+                        <span class="label">Тип:</span>
+                        <span class="value">Wavetable Synthesizer</span>
+                    </div>
+                    <div class="detail">
+                        <span class="label">Описание:</span>
+                        <span class="value">Улучшенная версия легендарного Serum с расширенными возможностями. Новые фильтры, эффекты, улучшенный движок и поддержка новых форматов wavetable. Идеальный инструмент для современного звукового дизайна и создания уникальных синт-звуков.</span>
+                    </div>
+                    <a href="https://www.dropbox.com/scl/fo/4vtvlqabtxxyuaxucydfr/AL_81BvksREFs6F6y0hsY9s?rlkey=02dwihb9e7vf1rl6qt958p5lo&st=n6s7awcs&dl=0" target="_blank" class="btn btn-small download-btn">Скачать</a>
+                </div>
                 <button class="btn" onclick="showPage('lib')">Вернуться к библиотеке</button>
             </div>
             <div id="sounds" class="folder-content">
@@ -845,3 +930,4 @@
     </script>
 </body>
 </html>
+```
