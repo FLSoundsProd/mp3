@@ -520,18 +520,21 @@
         }
         .useful-section {
             margin-top: 80px;
+            text-align: center;
         }
         .useful-section h2 {
             font-family: 'Montserrat', sans-serif;
             font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
+            margin-bottom: 40px;
+            color: var(--text);
+            text-align: center;
         }
         .useful-links {
             display: flex;
             flex-direction: column;
             gap: 15px;
             margin-top: 40px;
+            align-items: center;
         }
         .useful-link {
             color: var(--text-secondary);
@@ -541,6 +544,10 @@
             border-bottom: 1px solid var(--card-border);
             transition: 0.3s var(--cubic);
             cursor: pointer;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
         }
         .useful-link:last-child {
             border-bottom: none;
@@ -551,6 +558,19 @@
         }
         .light-theme .useful-link:hover {
             text-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .finger-icon {
+            display: inline-block;
+            margin-left: 8px;
+            width: 20px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.8L7 20.6c-.2.7-.8 1.2-1.5 1.2H4c-.6 0-1-.4-1-1 0-.3.2-.5.4-.8l3.2-8.8c.2-.6.8-.9 1.4-.7.4.1.7.5.7 1zm9.2 1.1c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l-1.3 4.5c-.2.6-.8.9-1.4.7-.4-.1-.7-.5-.7-1l-1.3-4.5c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l-1.3 4.5c-.2.6-.8.9-1.4.7-.4-.1-.7-.5-.7-1L6.8 9.9c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2-.6.8-.9 1.4-.7.4.1.7.5.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2-.6.8-.9 1.4-.7.4.1.7.5.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1L6.8 9.9c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2-.6.8-.9 1.4-.7.4.1.7.5.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2-.6.8-.9 1.4-.7.4.1.7.5.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2-.6.8-.9 1.4-.7.4.1.7.5.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2-.6.8-.9 1.4-.7.4.1.7.5.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2-.6.8-.9 1.4-.7.4.1.7.5.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2-.6.8-.9 1.4-.7.4.1.7.5.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2-.6.8-.9 1.4-.7.4.1.7.5.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2-.6.8-.9 1.4-.7.4.1.7.5.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2-.......");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+        .light-theme .finger-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000'%3E%3Cpath d='M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.8L7 20.6c-.2.7-.8 1.2-1.5 1.2H4c-.6 0-1-.4-1-1 0-.3.2-.5.4-.8l3.2-8.8c.2-.6.8-.9 1.4-.7.4.1.7.5.7 1zm9.2 1.1c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l-1.3 4.5c-.2.6-.8.9-1.4.7-.4-.1-.7-.5-.7-1l-1.3-4.5c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l-1.3 4.5c-.2.6-.8.9-1.4.7-.4-.1-.7-.5-.7-1L6.8 9.9c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2-.6.8-.9 1.4-.7.4.1.7.5.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2.6.8-.9 1.4-.7.4.1.7.5.7 1l1.3 4.5c.2.6.8.9 1.4.7.4-.1.7-.5.7-1l1.3-4.5c.2-.6.8-.9-1.4-.7-.4.1-.7.5-.7 1l-1.3 4.5c-.2.6-.8.9-1.4.7-.4-.1-.7-.5-.7-1l-1.3-4.5c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l-1.3 4.5c-.2.6-.8.9-1.4.7-.4-.1-.7-.5-.7-1l-1.3-4.5c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l-1.3 4.5c-.2.6-.8.9-1.4.7-.4-.1-.7-.5-.7-1l-1.3-4.5c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l-1.3 4.5c-.2.6-.8.9-1.4.7-.4-.1-.7-.5-.7-1l-1.3-4.5c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l-1.3 4.5c-.2.6-.8.9-1.4.7-.4-.1-.7-.5-.7-1l-1.3-4.5c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l-1.3 4.5c-.2.6-.8.9-1.4.7-.4-.1-.7-.5-.7-1l-1.3-4.5c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l-1.3 4.5c-.2.6-.8.9-1.4.7-.4-.1-.7-.5-.7-1l-1.3-4.5c-.2-.6-.8-.9-1.4-.7-.4.1-.7.5-.7 1l-1.3 4.5c-.2.6-.8.9-1.4......");
         }
     </style>
 </head>
@@ -564,7 +584,7 @@
             <a onclick="showPage('lib')" id="link-lib">Библиотека</a>
         </div>
         <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle">
-            <svg class="theme-icon sun" viewBox="0 0 24 24" aria-hidden="true">
+            <svg class="theme-icon sun" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="5" fill="currentColor"/>
                 <line x1="12" y1="2" x2="12" y2="5" stroke="currentColor" stroke-width="1.5"/>
                 <line x1="12" y1="19" x2="12" y2="22" stroke="currentColor" stroke-width="1.5"/>
@@ -575,7 +595,7 @@
                 <line x1="5" y1="19" x2="7.5" y2="16.5" stroke="currentColor" stroke-width="1.5"/>
                 <line x1="16.5" y1="7.5" x2="19" y2="5" stroke="currentColor" stroke-width="1.5"/>
             </svg>
-            <svg class="theme-icon moon" viewBox="0 0 24 24" aria-hidden="true" style="display:none;">
+            <svg class="theme-icon moon" viewBox="0 0 24 24" style="display:none;">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
             </svg>
         </button>
@@ -588,10 +608,16 @@
                 <button onclick="showPage('lib')" class="btn">Исследовать библиотеку</button>
             </div>
             <div class="useful-section">
-                <h2>Полезное</h2>
+                <h2 style="color: white; text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Полезное</h2>
                 <div class="useful-links">
-                    <a href="https://www.musiccreator.ai/mp3-tag-editor-online?spm=a2ty_o01.29997173.0.0.3fab5171blxmUN" target="_blank" class="useful-link">Сайт для редактирования информации о треке</a>
-                    <a href="https://www.looperman.com/?spm=a2ty_o01.29997173.0.0.3fab5171blxmUN" target="_blank" class="useful-link">Бесплатные лупы, вокал и акапеллы от музыкантов со всего мира</a>
+                    <a href="https://www.musiccreator.ai/mp3-tag-editor-online?spm=a2ty_o01.29997173.0.0.3fab5171blxmUN" target="_blank" class="useful-link">
+                        Сайт для редактирования информации о треке
+                        <span class="finger-icon"></span>
+                    </a>
+                    <a href="https://www.looperman.com/?spm=a2ty_o01.29997173.0.0.3fab5171blxmUN" target="_blank" class="useful-link">
+                        Бесплатные лупы, вокал и акапеллы от музыкантов со всего мира
+                        <span class="finger-icon"></span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -908,7 +934,7 @@
             pages.forEach(page => {
                 page.classList.remove('active');
                 page.style.animation = 'none';
-                page.offsetHeight;
+                page.offsetHeight; 
                 page.style.animation = null;
             });
             links.forEach(link => link.classList.remove('active'));
@@ -928,7 +954,7 @@
             pages.forEach(page => {
                 page.classList.remove('active');
                 page.style.animation = 'none';
-                page.offsetHeight;
+                page.offsetHeight; 
                 page.style.animation = null;
             });
             links.forEach(link => link.classList.remove('active'));
@@ -947,7 +973,7 @@
             pages.forEach(page => {
                 page.classList.remove('active');
                 page.style.animation = 'none';
-                page.offsetHeight;
+                page.offsetHeight; 
                 page.style.animation = null;
             });
             links.forEach(link => link.classList.remove('active'));
